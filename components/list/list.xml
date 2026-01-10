@@ -1,0 +1,65 @@
+<component>
+	<animations>
+		<timeline name="list_drop">
+			<animation prop="opa" start="0" end="255" duration="300" early_apply="true" target="self" />
+		</timeline>
+	</animations>
+	<api>
+		<prop name="list_width" default="400" type="int" />
+		<prop name="list_height" default="450" type="int" />
+		<prop name="list_card_width" default="800" type="int" />
+		<prop name="list_card_height" default="480" type="int" />
+	</api>
+
+	<previews>
+		<preview width="800" height="480" />
+	</previews>
+
+	<view
+		height="$list_card_height"
+		width="$list_card_width"
+		style_bg_opa="10"
+		style_bg_color="0x242323"
+		style_border_width="0"
+		style_radius="0"
+		scrollable="false"
+	>
+		<lv_obj
+			height="$list_height"
+			width="$list_width"
+			align="center"
+			flex_flow="column"
+			style_flex_main_place="center"
+		>
+			<style name="style_light" />
+			<lv_obj width="100%" height="10%" scrollable="false" flex_flow="row" style_flex_main_place="center">
+				<style name="style_container" />
+				<lv_label width="80%" bind_text="list_title" style_text_font="roboto_medium_25">
+					<style name="style_text" />
+				</lv_label>
+
+				<style name="style_container" />
+				<lv_button height="90%" width="30">
+					<style name="style_button" />
+					<lv_image src="list_clear_all_30dp" align="center" />
+					<event_cb callback="list_event_cb" trigger="clicked" />
+				</lv_button>
+			</lv_obj>
+			<lv_obj
+				name="card_container"
+				width="100%"
+				height="80%"
+				flex_flow="column"
+				style_flex_main_place="start"
+				style_flex_cross_place="center"
+				style_pad_left="34"
+				style_pad_right="0"
+				style_pad_top="10"
+				style_pad_bottom="10"
+				style_pad_row="20"
+			>
+				<style name="style_container" />
+			</lv_obj>
+		</lv_obj>
+	</view>
+</component>

@@ -1,0 +1,103 @@
+<globals>
+	<api>
+		<!-- Add <enumdefs> here -->
+	</api>
+
+	<consts>
+		<!-- Add <px>, <int>, <color> etc here -->
+	</consts>
+
+	<styles>
+		<style name="style_button" bg_opa="0%" border_width="0" shadow_opa="0%" pad_all="0" />
+		<style
+			name="style_dark"
+			bg_color="0xbbbaba"
+			bg_opa="88%"
+			border_width="0"
+			radius="20"
+			pad_all="0"
+			pad_hor="16"
+			pad_ver="14"
+			shadow_color="0xffffff"
+			shadow_opa="125"
+			shadow_width="20"
+		/>
+		<style
+			name="style_light"
+			bg_color="0xFFFFFF"
+			bg_opa="88%"
+			border_width="0"
+			radius="20"
+			pad_hor="16"
+			pad_ver="14"
+			shadow_color="0x434141"
+			shadow_opa="125"
+			shadow_width="20"
+		/>
+		<style name="style_text" text_color="0x665BEB" />
+		<style name="style_text_light" text_color="0x595959" />
+		<style name="style_text_dark" text_color="0xffffff" />
+		<style name="style_container" border_width="0" pad_all="0" bg_opa="0%" />
+	</styles>
+
+	<subjects>
+		<string name="pop_up_title" value="Application" />
+		<string name="pop_up_time" value="now" />
+		<string name="pop_up_subtitle" value="Subtitle" />
+		<string name="list_title" value="List Title" />
+		<int name="notifications_counter" value="0" />
+
+		<int name="dark_theme" value="0" />
+	</subjects>
+
+	<images>
+		<!-- Add <file> or <data> tags here -->
+		<data name="notification_icon" src_path="images/notifications_60dp.png" color_format="rgb565a8" />
+		<data name="card_icon" src_path="images/circle_circle_20dp.png" color_format="rgb565a8" />
+		<data name="notification_arrow_up" src_path="images/arrow_up_20dp.png" color_format="rgb565a8" />
+		<data name="notification_arrrow_down" src_path="images/arrow_down_20dp.png" color_format="rgb565a8" />
+		<data name="notification_delete" src_path="images/delete_20dp.png" color_format="rgb565a8" />
+		<data name="list_clear_all_30dp" src_path="images/clear_all_30dp.png" color_format="rgb565a8" />
+		<data name="list_clear_all" src_path="images/clear_all_20dp.png" color_format="rgb565a8" />
+	</images>
+
+	<fonts>
+		<bin name="roboto_black_12" size="12" bpp="4" as_file="false" src_path="fonts/Roboto_Condensed-Black.ttf" />
+		<bin
+			name="roboto_medium_25"
+			size="25"
+			bpp="4"
+			as_file="false"
+			src_path="fonts/Roboto-VariableFont_wdth,wght.ttf"
+		/>
+		<bin
+			name="roboto_medium_20"
+			size="20"
+			bpp="4"
+			as_file="false"
+			src_path="fonts/Roboto-VariableFont_wdth,wght.ttf"
+		/>
+		<bin
+			name="roboto_medium_12"
+			size="12"
+			bpp="4"
+			as_file="false"
+			src_path="fonts/Roboto-VariableFont_wdth,wght.ttf"
+		/>
+		<bin
+			name="roboto_medium_15"
+			size="15"
+			bpp="4"
+			as_file="false"
+			src_path="fonts/Roboto-VariableFont_wdth,wght.ttf"
+		/>
+
+		<bin
+			name="roboto_medium_13"
+			size="13"
+			bpp="4"
+			as_file="false"
+			src_path="fonts/Roboto-VariableFont_wdth,wght.ttf"
+		/>
+	</fonts>
+</globals>

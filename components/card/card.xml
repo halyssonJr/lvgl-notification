@@ -1,0 +1,60 @@
+<component>
+	<api>
+		<prop name="card_width" default="300" type="int" />
+		<prop name="card_height" default="200" type="int" />
+		<prop name="card_title" type="string" default="Application" />
+		<prop name="card_timestamp" type="string" default="now" />
+		<prop name="card_subtitle" type="string" default="Subtitle" />
+		<prop name="card_content" type="string" default="This is a simple message." />
+	</api>
+	<styles />
+	<previews>
+		<preview height="200" width="300" style_radius="20" />
+	</previews>
+
+	<view height="$card_height" width="$card_width">
+		<bind_style name="style_light" ref_value="0" subject="dark_theme" />
+		<bind_style name="style_dark" ref_value="1" subject="dark_theme" />
+		<style name="style_light" />
+		<!-- Title Container -->
+		<lv_obj height="15%" width="100%" align="top_left" scrollable="false" flex_flow="row">
+			<style name="style_container" />
+			<lv_obj height="100%" width="85%" align="top_left" scrollable="false" flex_flow="row">
+				<style name="style_container" />
+				<lv_image src="card_icon" />
+				<lv_label text="$card_title" style_text_font="roboto_medium_20">
+					<style name="style_text" />
+				</lv_label>
+				<lv_label text="$card_timestamp" style_text_font="roboto_medium_20" align="center">
+					<bind_style name="style_text_light" ref_value="0" subject="dark_theme" />
+					<bind_style name="style_text_dark" ref_value="1" subject="dark_theme" />
+				</lv_label>
+			</lv_obj>
+			<lv_button height="20" width="20">
+				<style name="style_button" />
+				<lv_image src="notification_delete" align="center" />
+				<event_cb callback="pop_up" trigger="clicked" />
+			</lv_button>
+		</lv_obj>
+
+		<lv_obj height="70%" width="100%" scrollable="false" align="bottom_left" flex_flow="column">
+			<style name="style_container" />
+			<!-- Sub-title Container -->
+			<lv_obj height="20%" width="100%" scrollable="false">
+				<lv_label text="$card_subtitle" style_text_font="roboto_medium_15" />
+				<style name="style_container" />
+			</lv_obj>
+			<lv_label
+				width="100%"
+				height="80%"
+				text="$card_content"
+				long_mode="wrap"
+				style_text_align="auto"
+				style_text_font="roboto_medium_15"
+			>
+				<bind_style name="style_text_light" ref_value="0" subject="dark_theme" />
+				<bind_style name="style_text_dark" ref_value="1" subject="dark_theme" />
+			</lv_label>
+		</lv_obj>
+	</view>
+</component>
