@@ -12,7 +12,7 @@
 		<preview height="200" width="300" style_radius="20" />
 	</previews>
 
-	<view height="$card_height" width="$card_width">
+	<view height="$card_height" width="$card_width" extends="lv_obj">
 		<bind_style name="style_light" ref_value="0" subject="dark_theme" />
 		<bind_style name="style_dark" ref_value="1" subject="dark_theme" />
 		<style name="style_light" />
@@ -33,7 +33,7 @@
 			<lv_button height="20" width="20">
 				<style name="style_button" />
 				<lv_image src="notification_delete" align="center" />
-				<event_cb callback="pop_up" trigger="clicked" />
+				<event_cb callback="card_event_cb" trigger="clicked" />
 			</lv_button>
 		</lv_obj>
 

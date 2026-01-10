@@ -8,7 +8,7 @@
  *********************/
 
 #include "card_gen.h"
-#include "notification.h"
+#include "lvgl_notification.h"
 
 /*********************
  *      DEFINES
@@ -79,7 +79,7 @@ lv_obj_t * card_create(lv_obj_t * parent, int32_t card_width, int32_t card_heigh
     lv_image_set_src(lv_image_1, notification_delete);
     lv_obj_set_align(lv_image_1, LV_ALIGN_CENTER);
     
-    lv_obj_add_event_cb(lv_button_0, pop_up, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(lv_button_0, card_event_cb, LV_EVENT_CLICKED, NULL);
     
     lv_obj_t * lv_obj_3 = lv_obj_create(lv_obj_0);
     lv_obj_set_height(lv_obj_3, lv_pct(70));

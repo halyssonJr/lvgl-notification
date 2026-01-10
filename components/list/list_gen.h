@@ -36,7 +36,7 @@ typedef enum {
  * GLOBAL PROTOTYPES
  **********************/
 
-lv_obj_t * list_create(lv_obj_t * parent, int32_t list_width, int32_t list_height, int32_t list_card_width, int32_t list_card_height);
+lv_obj_t * list_create(lv_obj_t * parent, int32_t list_width, int32_t list_height, int32_t list_card_width, int32_t list_card_height, const char * list_title);
 
 /**
  * Get a timeline of a list

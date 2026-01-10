@@ -1,9 +1,9 @@
 /**
- * @file notification_gen.h
+ * @file lvgl_notification_gen.h
  */
 
-#ifndef NOTIFICATION_GEN_H
-#define NOTIFICATION_GEN_H
+#ifndef LVGL_NOTIFICATION_GEN_H
+#define LVGL_NOTIFICATION_GEN_H
 
 #ifndef UI_SUBJECT_STRING_LENGTH
 #define UI_SUBJECT_STRING_LENGTH 256
@@ -83,10 +83,6 @@ extern const void * list_clear_all;
  * Subjects
  *----------------*/
 
-extern lv_subject_t pop_up_title;
-extern lv_subject_t pop_up_time;
-extern lv_subject_t pop_up_subtitle;
-extern lv_subject_t list_title;
 extern lv_subject_t notifications_counter;
 extern lv_subject_t dark_theme;
 
@@ -98,14 +94,15 @@ extern lv_subject_t dark_theme;
  * Event Callbacks
  *----------------*/
 
-void pop_up(lv_event_t * e);
+void card_event_cb(lv_event_t * e);
 void list_event_cb(lv_event_t * e);
+void notification_cb(lv_event_t * e);
 
 /**
  * Initialize the component library
  */
 
-void notification_init_gen(const char * asset_path);
+void lvgl_notification_init_gen(const char * asset_path);
 
 /**********************
  *      MACROS
@@ -125,4 +122,4 @@ void notification_init_gen(const char * asset_path);
 } /*extern "C"*/
 #endif
 
-#endif /*NOTIFICATION_GEN_H*/
+#endif /*LVGL_NOTIFICATION_GEN_H*/

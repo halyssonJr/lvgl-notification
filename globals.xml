@@ -41,12 +41,7 @@
 	</styles>
 
 	<subjects>
-		<string name="pop_up_title" value="Application" />
-		<string name="pop_up_time" value="now" />
-		<string name="pop_up_subtitle" value="Subtitle" />
-		<string name="list_title" value="List Title" />
 		<int name="notifications_counter" value="0" />
-
 		<int name="dark_theme" value="0" />
 	</subjects>
 

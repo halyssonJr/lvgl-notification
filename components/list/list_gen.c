@@ -8,7 +8,7 @@
  *********************/
 
 #include "list_gen.h"
-#include "notification.h"
+#include "lvgl_notification.h"
 
 /*********************
  *      DEFINES
@@ -33,7 +33,7 @@ static void free_timeline_event_cb(lv_event_t * e);
  *   GLOBAL FUNCTIONS
  **********************/
 
-lv_obj_t * list_create(lv_obj_t * parent, int32_t list_width, int32_t list_height, int32_t list_card_width, int32_t list_card_height)
+lv_obj_t * list_create(lv_obj_t * parent, int32_t list_width, int32_t list_height, int32_t list_card_width, int32_t list_card_height, const char * list_title)
 {
     LV_TRACE_OBJ_CREATE("begin");
 
@@ -47,28 +47,29 @@ lv_obj_t * list_create(lv_obj_t * parent, int32_t list_width, int32_t list_heigh
     lv_obj_set_style_radius(lv_obj_0, 0, 0);
     lv_obj_set_flag(lv_obj_0, LV_OBJ_FLAG_SCROLLABLE, false);
 
-    lv_obj_t * lv_obj_1 = lv_obj_create(lv_obj_0);
-    lv_obj_set_height(lv_obj_1, list_height);
-    lv_obj_set_width(lv_obj_1, list_width);
-    lv_obj_set_align(lv_obj_1, LV_ALIGN_CENTER);
-    lv_obj_set_flex_flow(lv_obj_1, LV_FLEX_FLOW_COLUMN);
+    lv_obj_t * list_contatiner = lv_obj_create(lv_obj_0);
+    lv_obj_set_name(list_contatiner, "list_contatiner");
+    lv_obj_set_height(list_contatiner, list_height);
+    lv_obj_set_width(list_contatiner, list_width);
+    lv_obj_set_align(list_contatiner, LV_ALIGN_CENTER);
+    lv_obj_set_flex_flow(list_contatiner, LV_FLEX_FLOW_COLUMN);
+    lv_obj_set_style_flex_main_place(list_contatiner, LV_FLEX_ALIGN_CENTER, 0);
+    lv_obj_add_style(list_contatiner, &style_light, 0);
+    lv_obj_t * lv_obj_1 = lv_obj_create(list_contatiner);
+    lv_obj_set_width(lv_obj_1, lv_pct(100));
+    lv_obj_set_height(lv_obj_1, lv_pct(10));
+    lv_obj_set_flag(lv_obj_1, LV_OBJ_FLAG_SCROLLABLE, false);
+    lv_obj_set_flex_flow(lv_obj_1, LV_FLEX_FLOW_ROW);
     lv_obj_set_style_flex_main_place(lv_obj_1, LV_FLEX_ALIGN_CENTER, 0);
-    lv_obj_add_style(lv_obj_1, &style_light, 0);
-    lv_obj_t * lv_obj_2 = lv_obj_create(lv_obj_1);
-    lv_obj_set_width(lv_obj_2, lv_pct(100));
-    lv_obj_set_height(lv_obj_2, lv_pct(10));
-    lv_obj_set_flag(lv_obj_2, LV_OBJ_FLAG_SCROLLABLE, false);
-    lv_obj_set_flex_flow(lv_obj_2, LV_FLEX_FLOW_ROW);
-    lv_obj_set_style_flex_main_place(lv_obj_2, LV_FLEX_ALIGN_CENTER, 0);
-    lv_obj_add_style(lv_obj_2, &style_container, 0);
-    lv_obj_t * lv_label_0 = lv_label_create(lv_obj_2);
+    lv_obj_add_style(lv_obj_1, &style_container, 0);
+    lv_obj_t * lv_label_0 = lv_label_create(lv_obj_1);
     lv_obj_set_width(lv_label_0, lv_pct(80));
-    lv_label_bind_text(lv_label_0, &list_title, NULL);
+    lv_label_set_text(lv_label_0, list_title);
     lv_obj_set_style_text_font(lv_label_0, roboto_medium_25, 0);
     lv_obj_add_style(lv_label_0, &style_text, 0);
     
-    lv_obj_add_style(lv_obj_2, &style_container, 0);
-    lv_obj_t * lv_button_0 = lv_button_create(lv_obj_2);
+    lv_obj_add_style(lv_obj_1, &style_container, 0);
+    lv_obj_t * lv_button_0 = lv_button_create(lv_obj_1);
     lv_obj_set_height(lv_button_0, lv_pct(90));
     lv_obj_set_width(lv_button_0, 30);
     lv_obj_add_style(lv_button_0, &style_button, 0);
@@ -76,9 +77,9 @@ lv_obj_t * list_create(lv_obj_t * parent, int32_t list_width, int32_t list_heigh
     lv_image_set_src(lv_image_0, list_clear_all_30dp);
     lv_obj_set_align(lv_image_0, LV_ALIGN_CENTER);
     
-    lv_obj_add_event_cb(lv_button_0, list_event_cb, LV_EVENT_CLICKED, NULL);
+    lv_obj_add_event_cb(lv_button_0, list_event_cb, LV_EVENT_CLICKED, "clear_all");
     
-    lv_obj_t * card_container = lv_obj_create(lv_obj_1);
+    lv_obj_t * card_container = lv_obj_create(list_contatiner);
     lv_obj_set_name(card_container, "card_container");
     lv_obj_set_width(card_container, lv_pct(100));
     lv_obj_set_height(card_container, lv_pct(80));
@@ -92,6 +93,7 @@ lv_obj_t * list_create(lv_obj_t * parent, int32_t list_width, int32_t list_heigh
     lv_obj_set_style_pad_row(card_container, 20, 0);
     lv_obj_add_style(card_container, &style_container, 0);
     
+    lv_obj_add_event_cb(lv_obj_0, list_event_cb, LV_EVENT_CLICKED, "outside");
     
     /* create animation timeline(s) */
     lv_anim_timeline_t ** at_array = lv_malloc(sizeof(lv_anim_timeline_t *) * _LIST_TIMELINE_CNT);

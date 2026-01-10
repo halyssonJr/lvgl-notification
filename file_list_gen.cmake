@@ -5,8 +5,8 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/components/card/card_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/list/list_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/main/main_gen.c
-  ${CMAKE_CURRENT_LIST_DIR}/notification_gen.c
-  ${CMAKE_CURRENT_LIST_DIR}/notification.c
+  ${CMAKE_CURRENT_LIST_DIR}/lvgl_notification_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/lvgl_notification.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/roboto_black_12_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/roboto_medium_25_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/roboto_medium_20_data.c

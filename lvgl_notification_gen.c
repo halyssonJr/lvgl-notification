@@ -1,12 +1,12 @@
 /**
- * @file notification_gen.c
+ * @file lvgl_notification_gen.c
  */
 
 /*********************
  *      INCLUDES
  *********************/
 
-#include "notification_gen.h"
+#include "lvgl_notification_gen.h"
 
 #if LV_USE_XML
 #endif /* LV_USE_XML */
@@ -91,10 +91,6 @@ extern const void * list_clear_all_data;
  * Subjects
  *----------------*/
 
-lv_subject_t pop_up_title;
-lv_subject_t pop_up_time;
-lv_subject_t pop_up_subtitle;
-lv_subject_t list_title;
 lv_subject_t notifications_counter;
 lv_subject_t dark_theme;
 
@@ -106,7 +102,7 @@ lv_subject_t dark_theme;
  *   GLOBAL FUNCTIONS
  **********************/
 
-void notification_init_gen(const char * asset_path)
+void lvgl_notification_init_gen(const char * asset_path)
 {
     char buf[256];
 
@@ -195,38 +191,6 @@ void notification_init_gen(const char * asset_path)
     /*----------------
      * Subjects
      *----------------*/
-    static char pop_up_title_buf[UI_SUBJECT_STRING_LENGTH];
-    static char pop_up_title_prev_buf[UI_SUBJECT_STRING_LENGTH];
-    lv_subject_init_string(&pop_up_title,
-                           pop_up_title_buf,
-                           pop_up_title_prev_buf,
-                           UI_SUBJECT_STRING_LENGTH,
-                           "Application"
-                          );
-    static char pop_up_time_buf[UI_SUBJECT_STRING_LENGTH];
-    static char pop_up_time_prev_buf[UI_SUBJECT_STRING_LENGTH];
-    lv_subject_init_string(&pop_up_time,
-                           pop_up_time_buf,
-                           pop_up_time_prev_buf,
-                           UI_SUBJECT_STRING_LENGTH,
-                           "now"
-                          );
-    static char pop_up_subtitle_buf[UI_SUBJECT_STRING_LENGTH];
-    static char pop_up_subtitle_prev_buf[UI_SUBJECT_STRING_LENGTH];
-    lv_subject_init_string(&pop_up_subtitle,
-                           pop_up_subtitle_buf,
-                           pop_up_subtitle_prev_buf,
-                           UI_SUBJECT_STRING_LENGTH,
-                           "Subtitle"
-                          );
-    static char list_title_buf[UI_SUBJECT_STRING_LENGTH];
-    static char list_title_prev_buf[UI_SUBJECT_STRING_LENGTH];
-    lv_subject_init_string(&list_title,
-                           list_title_buf,
-                           list_title_prev_buf,
-                           UI_SUBJECT_STRING_LENGTH,
-                           "List Title"
-                          );
     lv_subject_init_int(&notifications_counter, 0);
     lv_subject_init_int(&dark_theme, 0);
 
@@ -246,16 +210,13 @@ void notification_init_gen(const char * asset_path)
     lv_xml_register_font(NULL, "roboto_medium_13", roboto_medium_13);
 
     /* Register subjects */
-    lv_xml_register_subject(NULL, "pop_up_title", &pop_up_title);
-    lv_xml_register_subject(NULL, "pop_up_time", &pop_up_time);
-    lv_xml_register_subject(NULL, "pop_up_subtitle", &pop_up_subtitle);
-    lv_xml_register_subject(NULL, "list_title", &list_title);
     lv_xml_register_subject(NULL, "notifications_counter", &notifications_counter);
     lv_xml_register_subject(NULL, "dark_theme", &dark_theme);
 
     /* Register callbacks */
-    lv_xml_register_event_cb(NULL, "pop_up", pop_up);
+    lv_xml_register_event_cb(NULL, "card_event_cb", card_event_cb);
     lv_xml_register_event_cb(NULL, "list_event_cb", list_event_cb);
+    lv_xml_register_event_cb(NULL, "notification_cb", notification_cb);
 #endif
 
     /* Register all the global assets so that they won't be created again when globals.xml is parsed.
@@ -282,15 +243,20 @@ void notification_init_gen(const char * asset_path)
 
 /* Callbacks */
 #if defined(LV_EDITOR_PREVIEW)
-void __attribute__((weak)) pop_up(lv_event_t * e)
+void __attribute__((weak)) card_event_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
-    LV_LOG("pop_up was called\n");
+    LV_LOG("card_event_cb was called\n");
 }
 void __attribute__((weak)) list_event_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
     LV_LOG("list_event_cb was called\n");
+}
+void __attribute__((weak)) notification_cb(lv_event_t * e)
+{
+    LV_UNUSED(e);
+    LV_LOG("notification_cb was called\n");
 }
 #endif
 
