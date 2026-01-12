@@ -13,6 +13,10 @@ extern "C" {
  *      INCLUDES
  *********************/
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #include "lvgl_notification_gen.h"
 
 /*********************

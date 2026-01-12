@@ -57,6 +57,8 @@ lv_style_t style_container;
 
 lv_font_t * roboto_black_12;
 extern lv_font_t roboto_black_12_data;
+lv_font_t * roboto_black_30;
+extern lv_font_t roboto_black_30_data;
 lv_font_t * roboto_medium_25;
 extern lv_font_t roboto_medium_25_data;
 lv_font_t * roboto_medium_20;
@@ -86,6 +88,8 @@ const void * list_clear_all_30dp;
 extern const void * list_clear_all_30dp_data;
 const void * list_clear_all;
 extern const void * list_clear_all_data;
+const void * notification_icon_250dp;
+extern const void * notification_icon_250dp_data;
 
 /*----------------
  * Subjects
@@ -121,7 +125,7 @@ void lvgl_notification_init_gen(const char * asset_path)
 
         lv_style_init(&style_dark);
         lv_style_set_bg_color(&style_dark, lv_color_hex(0xbbbaba));
-        lv_style_set_bg_opa(&style_dark, (255 * 88 / 100));
+        lv_style_set_bg_opa(&style_dark, 255);
         lv_style_set_border_width(&style_dark, 0);
         lv_style_set_radius(&style_dark, 20);
         lv_style_set_pad_all(&style_dark, 0);
@@ -133,7 +137,7 @@ void lvgl_notification_init_gen(const char * asset_path)
 
         lv_style_init(&style_light);
         lv_style_set_bg_color(&style_light, lv_color_hex(0xFFFFFF));
-        lv_style_set_bg_opa(&style_light, (255 * 88 / 100));
+        lv_style_set_bg_opa(&style_light, 255);
         lv_style_set_border_width(&style_light, 0);
         lv_style_set_radius(&style_light, 20);
         lv_style_set_pad_hor(&style_light, 16);
@@ -165,6 +169,8 @@ void lvgl_notification_init_gen(const char * asset_path)
 
     /* get font 'roboto_black_12' from a C array */
     roboto_black_12 = &roboto_black_12_data;
+    /* get font 'roboto_black_30' from a C array */
+    roboto_black_30 = &roboto_black_30_data;
     /* get font 'roboto_medium_25' from a C array */
     roboto_medium_25 = &roboto_medium_25_data;
     /* get font 'roboto_medium_20' from a C array */
@@ -187,6 +193,7 @@ void lvgl_notification_init_gen(const char * asset_path)
     notification_delete = &notification_delete_data;
     list_clear_all_30dp = &list_clear_all_30dp_data;
     list_clear_all = &list_clear_all_data;
+    notification_icon_250dp = &notification_icon_250dp_data;
 
     /*----------------
      * Subjects
@@ -203,6 +210,7 @@ void lvgl_notification_init_gen(const char * asset_path)
 
     /* Register fonts */
     lv_xml_register_font(NULL, "roboto_black_12", roboto_black_12);
+    lv_xml_register_font(NULL, "roboto_black_30", roboto_black_30);
     lv_xml_register_font(NULL, "roboto_medium_25", roboto_medium_25);
     lv_xml_register_font(NULL, "roboto_medium_20", roboto_medium_20);
     lv_xml_register_font(NULL, "roboto_medium_12", roboto_medium_12);
@@ -214,9 +222,9 @@ void lvgl_notification_init_gen(const char * asset_path)
     lv_xml_register_subject(NULL, "dark_theme", &dark_theme);
 
     /* Register callbacks */
+    lv_xml_register_event_cb(NULL, "notification_cb", notification_cb);
     lv_xml_register_event_cb(NULL, "card_event_cb", card_event_cb);
     lv_xml_register_event_cb(NULL, "list_event_cb", list_event_cb);
-    lv_xml_register_event_cb(NULL, "notification_cb", notification_cb);
 #endif
 
     /* Register all the global assets so that they won't be created again when globals.xml is parsed.
@@ -230,6 +238,7 @@ void lvgl_notification_init_gen(const char * asset_path)
     lv_xml_register_image(NULL, "notification_delete", notification_delete);
     lv_xml_register_image(NULL, "list_clear_all_30dp", list_clear_all_30dp);
     lv_xml_register_image(NULL, "list_clear_all", list_clear_all);
+    lv_xml_register_image(NULL, "notification_icon_250dp", notification_icon_250dp);
 #endif
 
 #if LV_USE_XML == 0
@@ -243,6 +252,11 @@ void lvgl_notification_init_gen(const char * asset_path)
 
 /* Callbacks */
 #if defined(LV_EDITOR_PREVIEW)
+void __attribute__((weak)) notification_cb(lv_event_t * e)
+{
+    LV_UNUSED(e);
+    LV_LOG("notification_cb was called\n");
+}
 void __attribute__((weak)) card_event_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
@@ -252,11 +266,6 @@ void __attribute__((weak)) list_event_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
     LV_LOG("list_event_cb was called\n");
-}
-void __attribute__((weak)) notification_cb(lv_event_t * e)
-{
-    LV_UNUSED(e);
-    LV_LOG("notification_cb was called\n");
 }
 #endif
 

@@ -1,7 +1,7 @@
 <component>
 	<api>
-		<prop name="btn_width" default="65" type="int" />
-		<prop name="btn_height" default="65" type="int" />
+		<prop name="btn_width" default="85" type="int" />
+		<prop name="btn_height" default="85" type="int" />
 	</api>
 	<styles>
 		<style name="style_local" bg_opa="0%" border_width="0" shadow_opa="0%" pad_all="0" radius="0" />
@@ -19,10 +19,7 @@
 		style_bg_color="0xffffff"
 		style_shadow_width="30"
 	>
-		<lv_obj width="100%" height="100%" align="center" scrollable="false">
-			<style name="style_local" />
-			<lv_image src="notification_icon" align="center" />
-		</lv_obj>
+		<lv_image src="notification_icon" align="center" />
 		<lv_obj
 			width="45%"
 			height="45%"
@@ -41,5 +38,6 @@
 			/>
 			<bind_flag_if_eq flag="hidden" ref_value="0" subject="notifications_counter" />
 		</lv_obj>
+		<event_cb callback="notification_cb" trigger="clicked" />
 	</view>
 </component>

@@ -20,7 +20,7 @@
 		extends="lv_obj"
 		height="$list_card_height"
 		width="$list_card_width"
-		style_bg_opa="10"
+		style_bg_opa="30%"
 		style_bg_color="0x242323"
 		style_border_width="0"
 		style_radius="0"
@@ -42,9 +42,9 @@
 				</lv_label>
 
 				<style name="style_container" />
-				<lv_button height="90%" width="30">
+				<lv_button height="90%" width="30" style_bg_image_src="list_clear_all_30dp">
 					<style name="style_button" />
-					<lv_image src="list_clear_all_30dp" align="center" />
+					<!-- <lv_image src="list_clear_all_30dp" align="center" /> -->
 					<event_cb callback="list_event_cb" trigger="clicked" user_data="clear_all" />
 				</lv_button>
 			</lv_obj>
@@ -62,6 +62,15 @@
 				style_pad_row="20"
 			>
 				<style name="style_container" />
+				<lv_obj name="list_placeholder_container" width="90%" height="95%">
+					<style name="style_container" />
+					<bind_flag_if_ge flag="hidden" ref_value="1" subject="notifications_counter" />
+					<lv_image src="notification_icon_250dp" style_opa="30%" align="center" />
+					<lv_label style_text_font="roboto_black_30" text="No notifications, yet!" align="bottom_mid">
+						<bind_style name="style_text_light" ref_value="0" subject="dark_theme" />
+						<bind_style name="style_text_dark" ref_value="1" subject="dark_theme" />
+					</lv_label>
+				</lv_obj>
 			</lv_obj>
 		</lv_obj>
 		<event_cb callback="list_event_cb" trigger="clicked" user_data="outside" />

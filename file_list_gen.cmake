@@ -8,6 +8,7 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/lvgl_notification_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/lvgl_notification.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/roboto_black_12_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/roboto_black_30_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/roboto_medium_25_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/roboto_medium_20_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/roboto_medium_12_data.c
@@ -19,4 +20,5 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/images/notification_arrrow_down_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/notification_delete_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/list_clear_all_30dp_data.c
-  ${CMAKE_CURRENT_LIST_DIR}/images/list_clear_all_data.c)
+  ${CMAKE_CURRENT_LIST_DIR}/images/list_clear_all_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/notification_icon_250dp_data.c)

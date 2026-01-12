@@ -57,6 +57,8 @@ extern lv_style_t style_container;
 
 extern lv_font_t * roboto_black_12;
 
+extern lv_font_t * roboto_black_30;
+
 extern lv_font_t * roboto_medium_25;
 
 extern lv_font_t * roboto_medium_20;
@@ -78,6 +80,7 @@ extern const void * notification_arrrow_down;
 extern const void * notification_delete;
 extern const void * list_clear_all_30dp;
 extern const void * list_clear_all;
+extern const void * notification_icon_250dp;
 
 /*----------------
  * Subjects
@@ -94,9 +97,9 @@ extern lv_subject_t dark_theme;
  * Event Callbacks
  *----------------*/
 
+void notification_cb(lv_event_t * e);
 void card_event_cb(lv_event_t * e);
 void list_event_cb(lv_event_t * e);
-void notification_cb(lv_event_t * e);
 
 /**
  * Initialize the component library

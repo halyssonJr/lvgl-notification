@@ -31,7 +31,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-lv_obj_t * card_create(lv_obj_t * parent, int32_t card_width, int32_t card_height, const char * card_title, const char * card_timestamp, const char * card_subtitle, const char * card_content);
+lv_obj_t * card_create(lv_obj_t * parent, int32_t card_width, int32_t card_height, const char * card_title, const char * card_timestamp, const char * card_subtitle, const char * card_content, void * card_id);
 
 /**********************
  *      MACROS

@@ -1,7 +1,5 @@
 <screen>
 	<view height="480" width="800">
-		<button btn_height="75" btn_width="75" align="center">
-			<event_cb callback="notification_cb" trigger="clicked" />
-		</button>
+		<button btn_height="75" btn_width="75" align="center" />
 	</view>
 </screen>

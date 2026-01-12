@@ -12,7 +12,7 @@
 		<style
 			name="style_dark"
 			bg_color="0xbbbaba"
-			bg_opa="88%"
+			bg_opa="255"
 			border_width="0"
 			radius="20"
 			pad_all="0"
@@ -25,7 +25,7 @@
 		<style
 			name="style_light"
 			bg_color="0xFFFFFF"
-			bg_opa="88%"
+			bg_opa="255"
 			border_width="0"
 			radius="20"
 			pad_hor="16"
@@ -54,10 +54,12 @@
 		<data name="notification_delete" src_path="images/delete_20dp.png" color_format="rgb565a8" />
 		<data name="list_clear_all_30dp" src_path="images/clear_all_30dp.png" color_format="rgb565a8" />
 		<data name="list_clear_all" src_path="images/clear_all_20dp.png" color_format="rgb565a8" />
+		<data name="notification_icon_250dp" src_path="images/notifications_250dp.png" color_format="rgb565a8" />
 	</images>
 
 	<fonts>
 		<bin name="roboto_black_12" size="12" bpp="4" as_file="false" src_path="fonts/Roboto_Condensed-Black.ttf" />
+		<bin name="roboto_black_30" size="30" bpp="4" as_file="false" src_path="fonts/Roboto_Condensed-Black.ttf" />
 		<bin
 			name="roboto_medium_25"
 			size="25"

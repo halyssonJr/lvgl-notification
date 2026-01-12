@@ -49,7 +49,6 @@ lv_obj_t * main_create(void)
 
     lv_obj_t * button_0 = button_create(lv_obj_0, 75, 75);
     lv_obj_set_align(button_0, LV_ALIGN_CENTER);
-    lv_obj_add_event_cb(button_0, notification_cb, LV_EVENT_CLICKED, NULL);
 
     LV_TRACE_OBJ_CREATE("finished");
 

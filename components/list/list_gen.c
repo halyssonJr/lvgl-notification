@@ -41,7 +41,7 @@ lv_obj_t * list_create(lv_obj_t * parent, int32_t list_width, int32_t list_heigh
     lv_obj_set_name_static(lv_obj_0, "list_#");
     lv_obj_set_height(lv_obj_0, list_card_height);
     lv_obj_set_width(lv_obj_0, list_card_width);
-    lv_obj_set_style_bg_opa(lv_obj_0, 10, 0);
+    lv_obj_set_style_bg_opa(lv_obj_0, (255 * 30 / 100), 0);
     lv_obj_set_style_bg_color(lv_obj_0, lv_color_hex(0x242323), 0);
     lv_obj_set_style_border_width(lv_obj_0, 0, 0);
     lv_obj_set_style_radius(lv_obj_0, 0, 0);
@@ -72,11 +72,8 @@ lv_obj_t * list_create(lv_obj_t * parent, int32_t list_width, int32_t list_heigh
     lv_obj_t * lv_button_0 = lv_button_create(lv_obj_1);
     lv_obj_set_height(lv_button_0, lv_pct(90));
     lv_obj_set_width(lv_button_0, 30);
+    lv_obj_set_style_bg_image_src(lv_button_0, list_clear_all_30dp, 0);
     lv_obj_add_style(lv_button_0, &style_button, 0);
-    lv_obj_t * lv_image_0 = lv_image_create(lv_button_0);
-    lv_image_set_src(lv_image_0, list_clear_all_30dp);
-    lv_obj_set_align(lv_image_0, LV_ALIGN_CENTER);
-    
     lv_obj_add_event_cb(lv_button_0, list_event_cb, LV_EVENT_CLICKED, "clear_all");
     
     lv_obj_t * card_container = lv_obj_create(list_contatiner);
@@ -92,6 +89,23 @@ lv_obj_t * list_create(lv_obj_t * parent, int32_t list_width, int32_t list_heigh
     lv_obj_set_style_pad_bottom(card_container, 10, 0);
     lv_obj_set_style_pad_row(card_container, 20, 0);
     lv_obj_add_style(card_container, &style_container, 0);
+    lv_obj_t * list_placeholder_container = lv_obj_create(card_container);
+    lv_obj_set_name(list_placeholder_container, "list_placeholder_container");
+    lv_obj_set_width(list_placeholder_container, lv_pct(90));
+    lv_obj_set_height(list_placeholder_container, lv_pct(95));
+    lv_obj_add_style(list_placeholder_container, &style_container, 0);
+    lv_obj_bind_flag_if_ge(list_placeholder_container, &notifications_counter, LV_OBJ_FLAG_HIDDEN, 1);
+    lv_obj_t * lv_image_0 = lv_image_create(list_placeholder_container);
+    lv_image_set_src(lv_image_0, notification_icon_250dp);
+    lv_obj_set_style_opa(lv_image_0, (255 * 30 / 100), 0);
+    lv_obj_set_align(lv_image_0, LV_ALIGN_CENTER);
+    
+    lv_obj_t * lv_label_1 = lv_label_create(list_placeholder_container);
+    lv_obj_set_style_text_font(lv_label_1, roboto_black_30, 0);
+    lv_label_set_text(lv_label_1, "No notifications, yet!");
+    lv_obj_set_align(lv_label_1, LV_ALIGN_BOTTOM_MID);
+    lv_obj_bind_style(lv_label_1, &style_text_light, 0, &dark_theme, 0);
+    lv_obj_bind_style(lv_label_1, &style_text_dark, 0, &dark_theme, 1);
     
     lv_obj_add_event_cb(lv_obj_0, list_event_cb, LV_EVENT_CLICKED, "outside");
     
